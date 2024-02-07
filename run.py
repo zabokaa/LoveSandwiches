@@ -17,14 +17,21 @@ def get_sales_data():
     """
     Get sales data
     """
-    print("Pls enter sales data")
-    print("Data should be 6 numbers")
-    print("Example: 10,20,30,40,50,60\n")
-# data being displayed
-    data_str = input("Enter here: ")
-    sales_data = data_str.split(",")
-    validate_data(sales_data)
+    # while loop so the print messages will be displayed until the input format is valid
+    while True:
+        print("Pls enter sales data")
+        print("Data should be 6 numbers")
+        print("Example: 10,20,30,40,50,60\n")
 
+    # data being displayed
+        data_str = input("Enter here: ")
+        sales_data = data_str.split(",")
+
+        if validate_data(sales_data):
+            print("input data is correct")
+            break    #stopping the loop
+
+    return sales_data
 
 def validate_data(values):
     """
@@ -40,6 +47,9 @@ def validate_data(values):
             )
     except ValueError as e:
         print(f"Invalid data: {e}, please try again.\n")
+        return False
+    
+    return True
     # remember to call it!
-get_sales_data()
+date = get_sales_data()
 
