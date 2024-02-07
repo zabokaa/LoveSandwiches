@@ -70,8 +70,17 @@ def calculate_surplus_data(sales_row):
     """
     print("Calculating surplus data...\n")
     stock = SHEET.worksheet("stock").get_all_values()
-    stock_row = stock[-1]
-    print(stock_row)
+    stock_row = stock[-1]      #last row will be saved iin stock_row variable
+
+    surplus_data = []   #create new empty list
+
+    # use zip-method for working with two data work sheets
+    for stock, sales in zip(stock_row, sales_row):
+        surplus = int(stock) - sales      #change stock list to int 
+        surplus_data.append(surplus)
+
+    return surplus_data
+
 
 def main():
     """
@@ -80,4 +89,9 @@ def main():
     data = get_sales_data()
     sales_data = [int(num) for num in data]  #another list comprehension
     update_sales_worksheet(sales_data)
+    new_surplus_data = calculate_surplus_data(sales_data)
+    print(new_surplus_data)
 
+print("Happy to see you on Love Sandwiches Data Automation!")
+# do not forget to call the main FUNC to call all FUNCS of the programm
+main()
