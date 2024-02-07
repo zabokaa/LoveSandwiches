@@ -33,6 +33,7 @@ def validate_data(values):
     or if there aren't exactly 6 values.
     """
     try:
+        [int(value) for value in values]    #list comprehension, all input data in py are string, so have to convert to int
         if len(values) != 6:
             raise ValueError(
                 f"Exactly 6 values required, you provided {len(values)}"
